@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DashingWanderer", "DashingWanderer\DashingWanderer.csproj", "{67C48BC8-8ADC-4EA9-8D21-8BF01E5E54B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawDataPMDExplorers", "RawDataPMDExplorers\RawDataPMDExplorers.csproj", "{AC8F5CA9-B310-45A7-9C7D-28F4D880122C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67C48BC8-8ADC-4EA9-8D21-8BF01E5E54B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C48BC8-8ADC-4EA9-8D21-8BF01E5E54B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C48BC8-8ADC-4EA9-8D21-8BF01E5E54B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C48BC8-8ADC-4EA9-8D21-8BF01E5E54B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC8F5CA9-B310-45A7-9C7D-28F4D880122C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC8F5CA9-B310-45A7-9C7D-28F4D880122C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC8F5CA9-B310-45A7-9C7D-28F4D880122C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC8F5CA9-B310-45A7-9C7D-28F4D880122C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {823C3D47-BFE7-46BA-ABD6-930896316CA2}
+	EndGlobalSection
+EndGlobal
