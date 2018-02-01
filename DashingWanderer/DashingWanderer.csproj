@@ -20,6 +20,14 @@
     <PackageReference Include="runtime.osx.10.10-x64.CoreCompat.System.Drawing" Version="5.4.0-r8" />
   </ItemGroup>
 
+  <Target Name="ChangeAliasesOfSystemDrawing" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'CoreCompat.System.Drawing'">
+        <Aliases>SystemDrawing</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
+
   <ItemGroup>
     <ProjectReference Include="..\RawDataPMDExplorers\RawDataPMDExplorers.csproj" />
   </ItemGroup>

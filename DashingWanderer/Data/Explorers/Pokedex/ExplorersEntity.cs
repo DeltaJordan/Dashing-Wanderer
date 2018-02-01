@@ -208,6 +208,11 @@ namespace DashingWanderer.Data.Explorers.Pokedex
         public int SpecialAttack { get; set; }
 
         public int SpecialDefense { get; set; }
+
+        public override string ToString()
+        {
+            return $"HP: **{this.HP}**, ATK: **{this.Attack}**, DEF: **{this.Defense}**, SPA: **{this.SpecialAttack}**, SPD: **{this.SpecialDefense}**";
+        }
     }
 
     public class Moveset

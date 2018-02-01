@@ -1,6 +1,7 @@
-﻿using System;
+﻿extern alias SystemDrawing;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
+using SystemDrawing::System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace PortraitsAdder
 {
+    extern alias SystemDrawing;
+
     public class PortraitEntity
     {
         public int IndexId { get; set; }

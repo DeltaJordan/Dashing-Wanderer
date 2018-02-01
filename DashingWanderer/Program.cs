@@ -6,13 +6,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DashingWanderer.Data;
 using DashingWanderer.Data.Explorers.Pokedex;
 using DashingWanderer.Exceptions;
+using DashingWanderer.IO;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.EventArgs;
@@ -37,7 +40,39 @@ namespace DashingWanderer
             Console.WriteLine("Press any key to close...");
             Console.ReadKey(true);
 #else
-            
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    Console.WriteLine("Downloading Data Repo...");
+                    client.Headers.Add("user-agent", "DashingWanderer");
+                    byte[] zipBytes = client.DownloadData("https://api.github.com/repos/JordanZeotni/Explorers-Data/zipball");
+
+                    Console.WriteLine("Extracting...");
+                    using (MemoryStream stream = new MemoryStream(zipBytes))
+                    using (ZipArchive archive = new ZipArchive(stream))
+                    {
+                        archive.ExtractToDirectory(Globals.AppPath, true);
+                    }
+
+                    Console.WriteLine("Moving Data folder...");
+                    string dataRepo = Directory.GetDirectories(Globals.AppPath).FirstOrDefault(e => Directory.CreateDirectory(e).Name.StartsWith("JordanZeotni"));
+
+                    PathHelper.MoveDirectory(Path.Combine(Globals.AppPath, dataRepo, "Data"), Path.Combine(Globals.AppPath, "Data"));
+
+                    Console.WriteLine("Deleting repo folder...");
+                    Directory.Delete(dataRepo, true);
+
+                    Console.WriteLine("Starting bot...");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                Console.ReadKey(true);
+                throw;
+            }
+
             Globals.BotSettings = JsonConvert.DeserializeObject<Settings>(File.ReadAllText(Path.Combine(Globals.AppPath, "config.json")));
 
             discord = new DiscordClient(new DiscordConfiguration
@@ -79,9 +114,14 @@ namespace DashingWanderer
 
         private static async Task Commands_CommandErrored(CommandErrorEventArgs e)
         {
-            if (e.Exception is OutputException)
+            if (e.Exception is DiscordMessageException outputException)
             {
-                await e.Context.RespondAsync(e.Exception.Message);
+                await e.Context.RespondAsync(outputException.Message, outputException.IsTTS, outputException.Embed);
+
+                e.Context.Client.DebugLogger.LogMessage(LogLevel.Warning, 
+                    Assembly.GetExecutingAssembly().FullName, 
+                    $"DiscordMessageException output to channel {e.Context.Channel.Name}. Arguments: {string.Join(", ", e.Command.Arguments)}", 
+                    e.Context.Message.Timestamp.DateTime);
             }
             else
             {
