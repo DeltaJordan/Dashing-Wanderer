@@ -1,5 +1,6 @@
 ﻿// Uncomment to build data
 // #define DATA
+// #define TESTBUILD
 
 using System;
 using System.Collections.Generic;
@@ -84,12 +85,18 @@ namespace DashingWanderer
                 AutoReconnect = true
             });
 
+            string[] debugPrefixes = null;
+
+#if TESTBUILD
+            debugPrefixes = new[] {"d.."};
+#endif
+
             commands = discord.UseCommandsNext(new CommandsNextConfiguration
             {
-                StringPrefixes = new []{"d."},
+                StringPrefixes = debugPrefixes ?? new []{"d."},
                 EnableMentionPrefix = true
             });
-
+            
             commands.RegisterCommands(Assembly.GetExecutingAssembly());
 
             commands.CommandExecuted += Commands_CommandExecuted;

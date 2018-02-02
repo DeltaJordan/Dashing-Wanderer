@@ -104,7 +104,7 @@ namespace DashingWanderer.Commands
             }
         }
 
-        [Command("item"), Description("Retrieves info about the requested item."), RequireOwner]
+        [Command("item"), Description("Retrieves info about the requested item.")]
         public async Task Item(CommandContext ctx, [Description("Requested move name or move id."), RemainingText] string item)
         {
             ExplorersItem explorersItem = GetItem(item);
@@ -213,9 +213,16 @@ namespace DashingWanderer.Commands
                     throw new ArgumentOutOfRangeException();
             }
 
+            if (explorersItem.ItemCategory == ItemCategoryEnum.ItemCategory.TMHM)
+            {
+                builder.AddField("TM/HM Move", DataBuilder.ExplorersMoves.First(e => e.MoveId == explorersItem.Param1).Name);
+            }
+
             TypeEnum.PokemonType type = (TypeEnum.PokemonType)new Random().Next(1, Enum.GetValues(typeof(TypeEnum.PokemonType)).Length - 2);
 
             builder.WithColor(new DiscordColor(type.ToHex()));
+
+            await ctx.RespondAsync(string.Empty, false, builder.Build());
         }
 
         [Command("move"), Description("Retrieves info about the requested move.")]
