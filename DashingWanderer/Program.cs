@@ -1,6 +1,6 @@
 ﻿// Uncomment to build data
 // #define DATA
-#define TESTBUILD
+// #define TESTBUILD
 
 using System;
 using System.Collections.Generic;
