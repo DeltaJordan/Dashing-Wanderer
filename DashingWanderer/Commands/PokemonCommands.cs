@@ -213,12 +213,9 @@ namespace DashingWanderer.Commands
                     throw new ArgumentOutOfRangeException();
             }
 
-            if (explorersItem.ItemCategory == ItemCategoryEnum.ItemCategory.TMHM)
-            {
-                builder.AddField("TM/HM Move", DataBuilder.ExplorersMoves.First(e => e.MoveId == explorersItem.Param1).Name);
-            }
-
             TypeEnum.PokemonType type = (TypeEnum.PokemonType)new Random().Next(1, Enum.GetValues(typeof(TypeEnum.PokemonType)).Length - 2);
+
+            builder.WithFooter($"#{explorersItem.ItemId}", "https://cdn.discordapp.com/emojis/330534908101394432.png");
 
             builder.WithColor(new DiscordColor(type.ToHex()));
 
@@ -356,7 +353,7 @@ namespace DashingWanderer.Commands
 
             if (explorersMove == null)
             {
-                IEnumerable<string> similarPokemon = DataBuilder.ExplorersMoves
+                List<string> similarItems = DataBuilder.ExplorersItems
                     .GroupBy(e =>
                     {
                         int idComparasion = LevenshteinDistance.Compute(e.Id, item);
@@ -364,10 +361,16 @@ namespace DashingWanderer.Commands
                         return idComparasion < nameComparasion ? idComparasion : nameComparasion;
                     })
                     .OrderBy(e => e.Key)
-                    .First()
-                    .Select(e => e.Name);
+                    .First(e => e.Any() && e.Any(f => !string.IsNullOrWhiteSpace(f.Name)))?
+                    .Select(e => e.Name)
+                    .ToList();
 
-                throw new DiscordMessageException($"Item not found. Did you mean any of the following: `{string.Join("`, `", similarPokemon)}`?");
+                if (similarItems == null || !similarItems.Any())
+                {
+                    throw new DiscordMessageException("Item not found.");
+                }
+
+                throw new DiscordMessageException($"Item not found. Did you mean any of the following: `{string.Join("`, `", similarItems)}`?");
             }
 
             return explorersMove;
@@ -390,7 +393,7 @@ namespace DashingWanderer.Commands
 
             if (explorersMove == null)
             {
-                IEnumerable<string> similarPokemon = DataBuilder.ExplorersMoves
+                IEnumerable<string> similarMoves = DataBuilder.ExplorersMoves
                     .GroupBy(e =>
                     {
                         int idComparasion = LevenshteinDistance.Compute(e.Id, move);
@@ -398,10 +401,16 @@ namespace DashingWanderer.Commands
                         return idComparasion < nameComparasion ? idComparasion : nameComparasion;
                     })
                     .OrderBy(e => e.Key)
-                    .First()
-                    .Select(e => e.Name);
+                    .First(e => e.Any() && e.Any(f => !string.IsNullOrWhiteSpace(f.Name)))?
+                    .Select(e => e.Name)
+                    .ToList();
 
-                throw new DiscordMessageException($"Pokemon not found. Did you mean any of the following: `{string.Join("`, `", similarPokemon)}`?");
+                if (similarMoves == null || !similarMoves.Any())
+                {
+                    throw new DiscordMessageException("Item not found.");
+                }
+
+                throw new DiscordMessageException($"Move not found. Did you mean any of the following: `{string.Join("`, `", similarMoves)}`?");
             }
 
             return explorersMove;
@@ -432,8 +441,14 @@ namespace DashingWanderer.Commands
                         return idComparasion < nameComparasion ? idComparasion : nameComparasion;
                     })
                     .OrderBy(e => e.Key)
-                    .First()
-                    .Select(e => e.Name);
+                    .First(e => e.Any() && e.Any(f => !string.IsNullOrWhiteSpace(f.Name)))?
+                    .Select(e => e.Name)
+                    .ToList();
+
+                if (similarPokemon == null || !similarPokemon.Any())
+                {
+                    throw new DiscordMessageException("Item not found.");
+                }
 
                 throw new DiscordMessageException($"Pokemon not found. Did you mean any of the following: `{string.Join("`, `", similarPokemon)}`?");
             }
