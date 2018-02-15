@@ -1,10 +1,12 @@
-﻿using System;
+﻿extern alias SystemDrawing;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using SystemDrawing::System.Drawing;
 using DashingWanderer.Data.Explorers;
 using DashingWanderer.Data.Explorers.Items;
 using DashingWanderer.Data.Explorers.Moves;
@@ -68,6 +70,47 @@ namespace DashingWanderer.Data
             catch (Exception e)
             {
                 Console.WriteLine(currentFile);
+                Console.WriteLine(e);
+            }
+        }
+
+        public static void WriteExplorersPortraitsToFiles()
+        {
+            foreach (PortraitEntity portraitEntity in ExplorersPortraits)
+            {
+                foreach (Portrait explorersPortrait in portraitEntity.Portraits)
+                {
+                    using (MemoryStream stream = new MemoryStream(Convert.FromBase64String(explorersPortrait.PortraitImageBase64)))
+                    {
+                        Image.FromStream(stream).Save(Path.Combine(
+                                Directory.CreateDirectory(Path.Combine(PortraitFolder, $"{portraitEntity.IndexId}")).FullName, 
+                                $"{explorersPortrait.PortraitId}.png"));
+                    }
+                }
+            }
+        }
+
+        public static void BuildExplorersDataIndexes()
+        {
+            try
+            {
+                List<string> itemFileIndex = Directory.EnumerateFiles(ItemDataFolder, "*.json").Select(file => file.Replace(ItemDataFolder, string.Empty)).ToList();
+                File.WriteAllText(Path.Combine(ItemDataFolder, "index.dat"), JsonConvert.SerializeObject(itemFileIndex, Formatting.Indented));
+
+                List<string> moveFileIndex = Directory.EnumerateFiles(MoveDataFolder, "*.json").Select(file => file.Replace(MoveDataFolder, string.Empty)).ToList();
+                File.WriteAllText(Path.Combine(MoveDataFolder, "index.dat"), JsonConvert.SerializeObject(moveFileIndex, Formatting.Indented));
+
+                List<string> pokemonFileIndex = Directory.EnumerateFiles(PokemonDataFolder, "*.json").Select(file => file.Replace(PokemonDataFolder, string.Empty)).ToList();
+                File.WriteAllText(Path.Combine(PokemonDataFolder, "index.dat"), JsonConvert.SerializeObject(pokemonFileIndex, Formatting.Indented));
+
+                File.WriteAllText(Path.Combine(PortraitFolder, "index.dat"), JsonConvert.SerializeObject(Directory
+                    .EnumerateFiles(PortraitFolder, "*", SearchOption.AllDirectories)
+                    .Where(file => file.ToLower().EndsWith("json") || file.ToLower().EndsWith("png"))
+                    .Select(file => file.Replace(PortraitFolder, string.Empty))
+                    .ToList(), Formatting.Indented));
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine(e);
             }
         }

@@ -37,7 +37,9 @@ namespace DashingWanderer
         public static async Task Main(string[] args)
         {
 #if DATA
-            DataBuilder.BuildExplorerPokemonData();
+            DataBuilder.GetExplorersData();
+            DataBuilder.WriteExplorersPortraitsToFiles();
+            DataBuilder.BuildExplorersDataIndexes();
             Console.WriteLine("Press any key to close...");
             Console.ReadKey(true);
 #else

@@ -27,6 +27,11 @@ namespace PortraitsAdder
                 return Image.FromStream(stream);
             }
         }
+
+        public static string UrlFromPortrait(PortraitEntity portraitEntity, Portrait portrait)
+        {
+            return $"https://raw.githubusercontent.com/JordanZeotni/Explorers-Data/master/Data/Portraits/{portraitEntity.IndexId}/{portrait.PortraitId}.png";
+        }
     }
 
     public class Portrait

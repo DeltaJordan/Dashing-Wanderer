@@ -32,7 +32,8 @@ namespace DashingWanderer.Commands
     public class PokemonCommands
     {
         [Command("dex"), Description("Retrieves info about the requested Pokemon.")]
-        public async Task Dex(CommandContext ctx, [Description("Requested Pokemon name or Dex Id."), RemainingText] string pokemon)
+        public async Task Dex(CommandContext ctx, [Description("Requested Pokemon name or Dex Id."), RemainingText]
+            string pokemon)
         {
             if (string.IsNullOrWhiteSpace(pokemon))
             {
@@ -97,11 +98,9 @@ namespace DashingWanderer.Commands
 
             builder.WithColor(new DiscordColor(explorersPokemon.PrimaryType.ToHex()));
 
-            using (MemoryStream stream = new MemoryStream(Convert.FromBase64String(DataBuilder.ExplorersPortraits.First(e => e.IndexId == explorersPokemon.RawIndex).Portraits.First(e => e.PortraitId == 0).PortraitImageBase64)))
-            {
-                await ctx.RespondWithFileAsync($"{explorersPokemon.Id}.png", stream);
-                await ctx.RespondAsync($"__**{explorersPokemon.Name}, the {explorersPokemon.Category} Pokémon**__", false, builder.Build());
-            }
+            builder.WithThumbnailUrl(PortraitEntity.UrlFromPortrait(DataBuilder.ExplorersPortraits.First(e => e.IndexId == explorersPokemon.RawIndex), DataBuilder.ExplorersPortraits.First(e => e.IndexId == explorersPokemon.RawIndex).Portraits.First(e => e.PortraitId == 0)));
+            
+            await ctx.RespondAsync($"__**{explorersPokemon.Name}, the {explorersPokemon.Category} Pokémon**__", false, builder.Build());
         }
 
         [Command("item"), Description("Retrieves info about the requested item.")]
@@ -272,7 +271,7 @@ namespace DashingWanderer.Commands
                 SpecialAttack = explorersPokemon.GenderEnitities.First().BaseStats.SpecialAttack + explorersPokemon.LevelStats.Take(level).Select(e => e.SpecialAttack).Aggregate((e, f) => e + f),
                 SpecialDefense = explorersPokemon.GenderEnitities.First().BaseStats.SpecialDefense + explorersPokemon.LevelStats.Take(level).Select(e => e.SpecialDefense).Aggregate((e, f) => e + f),
                 HP = explorersPokemon.GenderEnitities.First().BaseStats.HP + explorersPokemon.LevelStats.Take(level).Select(e => e.HP).Aggregate((e, f) => e + f),
-                RequiredExp = explorersPokemon.LevelStats[level].RequiredExp
+                RequiredExp = explorersPokemon.LevelStats[level - 1].RequiredExp
             };
 
             DiscordEmbedBuilder builder = new DiscordEmbedBuilder();
