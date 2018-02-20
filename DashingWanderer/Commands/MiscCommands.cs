@@ -61,8 +61,6 @@ namespace DashingWanderer.Commands
             builder.WithColor(DiscordColor.Green);
 
             DiscordMessage resultMessage = await ctx.RespondAsync(null, false, builder.Build());
-
-            await resultMessage.DeleteAsync();
         }
 
         public async Task TCPI(CommandContext ctx)
