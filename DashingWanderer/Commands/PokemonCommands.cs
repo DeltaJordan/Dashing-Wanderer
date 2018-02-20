@@ -26,7 +26,10 @@ namespace DashingWanderer.Commands
     [Group("explorers"), 
      Aliases("e"), 
      Description("Targets the commands to the Pokemon Mystery Dungeon: Explorers of Time/Darkness/Sky games. " +
-                 "Please note that all data is pulled directly from the game and may be incorrect." +
+                 "Please note that all data is pulled directly from Explorers of Sky and may be incorrect. " +
+                 "If you require just EOD/EOT info, please understand that EOS has most information that pertains to both games. " +
+                 "Possibly after all PMDs have been documented in this file I will add seperators, but for now it would make " +
+                 "more sense to have the improved version's info first, as it is more likely for people to be playing that." +
                  "\nCredits to https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/ " +
                  "for all the amazing documentation and research put into this game for the data files.")]
     public class PokemonCommands
