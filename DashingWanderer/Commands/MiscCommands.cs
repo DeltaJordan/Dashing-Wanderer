@@ -29,7 +29,7 @@ namespace DashingWanderer.Commands
                                 typeof(Command).GetTypeInfo().Assembly, typeof(DiscordMessage).GetTypeInfo().Assembly)
                 .WithImports("System", "System.Collections.Generic", "System.Linq", "System.Reflection", "System.Text",
                              "System.Text.RegularExpressions", "System.Threading.Tasks", "DSharpPlus.CommandsNext",
-                             "DSharpPlus.CommandsNext.Attributes", "DSharpPlus.Entities"), typeof(Globals))
+                             "DSharpPlus.CommandsNext.Attributes", "DSharpPlus.Entities", "DSharpPlus"), typeof(Globals))
                 .CreateDelegate();
 
             object result;

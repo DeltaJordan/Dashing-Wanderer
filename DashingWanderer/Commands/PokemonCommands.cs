@@ -15,6 +15,7 @@ using DashingWanderer.Data.Explorers.Pokedex;
 using DashingWanderer.Data.Explorers.Pokedex.Enums;
 using DashingWanderer.Exceptions;
 using DashingWanderer.Extensions;
+using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
@@ -38,6 +39,8 @@ namespace DashingWanderer.Commands
         public async Task Dex(CommandContext ctx, [Description("Requested Pokemon name or Dex Id."), RemainingText]
             string pokemon)
         {
+            string.Join(",", ctx.Guild.Members.Where(e => (ctx.Guild.Channels.First(f => f.Name == "pogchat").PermissionsFor(e) & Permissions.SendMessages) != 0).Select(e => e.DisplayName));
+
             if (string.IsNullOrWhiteSpace(pokemon))
             {
                 throw new DiscordMessageException("Invalid entry.");
