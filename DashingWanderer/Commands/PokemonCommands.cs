@@ -39,8 +39,6 @@ namespace DashingWanderer.Commands
         public async Task Dex(CommandContext ctx, [Description("Requested Pokemon name or Dex Id."), RemainingText]
             string pokemon)
         {
-            string.Join(",", ctx.Guild.Members.Where(e => (ctx.Guild.Channels.First(f => f.Name == "pogchat").PermissionsFor(e) & Permissions.SendMessages) != 0).Select(e => e.DisplayName));
-
             if (string.IsNullOrWhiteSpace(pokemon))
             {
                 throw new DiscordMessageException("Invalid entry.");
