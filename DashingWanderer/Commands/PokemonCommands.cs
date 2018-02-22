@@ -119,7 +119,7 @@ namespace DashingWanderer.Commands
                 Color = DiscordColor.Cyan
             };
 
-            builder.AddField("Group(s)", string.Join(", ", DataBuilder.ExplorersIQSkills.Where(e => e.Name == skill.Name).Select(e => e.Group)));
+            builder.AddField("Group(s)", string.Join(", ", DataBuilder.ExplorersIQSkills.Where(e => e.Name == skill.Name).Select(e => e.Group).OrderBy(e => e)));
 
             await ctx.RespondAsync(null, false, builder.Build());
         }
@@ -143,7 +143,7 @@ namespace DashingWanderer.Commands
                 builder.AddField("Pokemon that have this IQ group",
                     string.Join(", ",
                         DataBuilder.ExplorersPokemon.Where(e => e.GenderEnitities.First().IQGroup == resultIQGroup)
-                            .Select(e => e.Name).Distinct()));
+                            .OrderBy(e => e.DexId).Select(e => e.Name).Distinct()));
 
                 await ctx.RespondAsync(null, false, builder.Build());
             }
