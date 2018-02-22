@@ -1,0 +1,240 @@
+0,Dedicated Traveler,Base Skill,Prioritizes moving over using attacks or items
+,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a Throwing Item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its held item.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Status Checker,25 (?0.5),Refrains from moves that inflict a status that the foe already has.
+,Nontraitor,40 (?0.5),"Does not attack friends, even when confused or in cowering status."
+,Acute Sniffer,50 (?0.5),Lets you know the number of items on the floor.
+,PP Saver,55 (?0.5),Sometimes gets to use a move without draining PP.
+,Type-Advantage Master,105 (?1),Raises the critical-hit rate of type-effective moves.
+,Survivalist,140 (?1.5),Restores more Belly stat when eating food. Sometimes avoids getting status changes when eating Grimy Food.
+,Coin Watcher,150 (?1.5),"When picking up Poké, the Pokémon pulls in 1.2 times the value of the coin. Cannot be turned off."
+,Nonsleeper,160 (?2),"Pokémon is immune to nightmare, sleep, yawning and napping status."
+,Lava Evader,300 (?3),Avoids entering lava.
+,Multitalent,310 (?3.5),Adds 5 to Pokémon's max PP. Cannot be turned off.
+,Haggler,350 (?3.5),Can buy low and sell high at Kecleon Markets inside the dungeons.
+,Collector,370 (?4),Raises fallen foes' rate of dropping Treasure Boxes.
+,All-Terrain Hiker,400 (?4),"Can cross water, lava and valleys."
+,Trap Buster,420 (?4.5),Occasionally destroys traps by stepping on them.
+,Stair Sensor,480 (?5),Learns the location of the stairs when changing floors.
+,Map Surveyor,580 (?6),Knows the floor layout.
+,House Avoider,800 (?8),Does not enter Monster Houses.
+,Pierce Hurler,850 (?8.5),Throwing items penetrate Pokémon and walls and continues flying.
+1,Dedicated Traveler,Base Skill,Prioritizes moving over using attacks or items.
+,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a Throwing Item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its held item.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Status Cheker,25 (?0.5),Refrains from moves that inflict status change that the foe already has.
+,Cheerleader,30 (?0.5),Raises the Attack and Sp. Attack of neighboring allies by 1 level.
+,Nontraitor,40 (?0.5),"Does not attack allies, even when confused or in cowering status."
+,Bodyguard,65 (?1),Takes damage in place of friends who are low on HP.
+,Type-Advantage Master,105 (?1),Raises the critical-hit rate of type-effective moves.
+,Coin Watcher,150 (?1.5),"When picking up Poké, the Pokémon pulls in 1.2 times the value of the coin. Cannot be turned off."
+,Nonsleeper,160 (?2),"Pokémon is immune to nightmare, sleep, yawning and napping."
+,Gap Prober,170 (?2),Moves and throwing items pass harmlessly through allies.
+,Wise Healer,175 (?2),Raises the effectiveness of HP-recovery items and moves.
+,Deep Breather,190 (?2),Recovers 1 PP to a random move when changing floors.
+,Lava Evader,300 (?3),Avoids entering lava.
+,Haggler,350 (?3.5),Can buy low and sell high at Kecleon Markets inside dungeons.
+,Trap Buster,420 (?4.5),Occasionally destroys traps by stepping on them.
+,Fast Friend,550 (?5.5),Raises likelihood of recruiting defeated foes by 1%.
+,Trap Seer,600 (?6),Pokémon can see hidden Traps at its feet without setting them off.
+,House Avoider,800 (?8),Does not enter Monster Houses.
+,Pierce Hurler,850 (?8.5),"Throwing items penetrate Pokémon and walls, and continue flying."
+,Nature Gifter,900 (?9),Extends the effects of seeds and berries to the allies. Only works for leader Pokémon.
+2,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a Throwing Item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its held item.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Status Checker,25 (?0.5),Refrains from moves that inflict a status change that the foe already has.
+,Nontraitor,40 (?0.5),"Does not attack allies, even when confused or in cowering status."
+,Brick-Tough,100 (?1),Adds 10 to max HP. Cannot be turned off.
+,Type-Advantage Master,105 (?1),Raises the critical-hit rate of type-effective moves.
+,Power Pitcher,130 (?1.5),Throwing items deal 1.5 times the damage. Does not work with Geo Pebbles and Gravelerocks.
+,Survivalist,140 (?1.5),Restores more Belly stat when eating food. Sometimes avoids getting status problems from Grimy Food.
+,Nonsleeper,160 (?2),"Pokémon is immune to nightmare, sleep, yawning and napping."
+,Concentrator,185 (?2),Raises Accuracy by 1 but decreases Evasion by 1.
+,Practice Swinger,195 (?2),Raises Attack and Special Attack by 1 on the turn after a missed attack.
+,Exp. Go-Getter,200 (?2),Prioritizes attack foes with a higher experience point payout.
+,Aggressor,220 (?2.5),"Raises both Attack stats by 1 each, but decreases both Defense stats by 1 each."
+,Counter Basher,280 (?3),"Lowers Defense by 1, and sometimes sends the damage taken back to the foe if the foe is adjacent."
+,Lava Evader,300 (?3),Avoids entering lava.
+,Erratic Player,340 (?3.5),Increases multiplier effect of type compatibility.
+,Clutch Performer,360 (?4),Raises Evasion by 2 when HP is below 25%.
+,Extra Striker,520 (?5.5),Sometimes strikes again following an attack.
+,Intimidator,560 (?6),Sometimes causes attacking foe to cringe.
+,No-Charger,570 (?6),"Unleashes charged attacks in one turn, while draining 2 PP."
+,Pierce Hurler,850 (?8.5),Throwing Items penetrate Pokémon and walls and continues flying.
+3,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a Throwing Item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its held item.
+,Dedicated Traveler,Base Skill,Prioritizes moving over using attacks or items.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Status Checker,25 (?0.5),Refrains from moves that inflict a status change that the foe already has.
+,Nontraitor,40 (?0.5),"Does not attack allies, even when confused or in cowering status."
+,PP Saver,55 (?0.5),Sometimes gets to use a move without draining PP.
+,Self-Curer,70 (?1),Shortens required turns for Pokémon to heal from status.
+,Gap Prober,170 (?2),Moves and throwing items pass harmlessly through allies.
+,Concentrator,185 (?2),Raises Accuracy by 1 but decreases Evasion by 1.
+,Practice Swinger,195 (?2),Raises Attack and Special Attack by 1 on the turn after a missed attack.
+,Trap Avoider,240 (?2.5),Avoids visible traps only.
+,Sharp Shooter,260 (?3),Raises critical-hit ratio.
+,Lava Evader,300 (?3),Avoids entering lava.
+,Counter Hitter,330 (?3.5),Sometimes counters 1/4 of the damage received back to the adjacent opponent.
+,Clutch Performer,360 (?4),Raises Evasion by 2 when HP is below 25%.
+,Critical Dodger,440 (?4.5),Immunity to critical hits.
+,Stair Sensor,480 (?5),Learns the location of the stairs when changing floors.
+,Extra Striker,520 (?5.5),Sometimes strikes again following an attack.
+,Quick Dodger,540 (?5.5),Raises likelihood of dodging attacks.
+,Trap Seer,600 (?6),Able to step on traps without setting off.
+,Quick Striker,750 (?7.5),Can do two regular attacks in one turn in a row.
+4,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a Throwing Item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its held item.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Efficiency Expert,10 (?0.5),Attacks Pokémon with the lowest HP first.
+,Status Checker,25 (?0.5),Refrains from moves that inflict a status change that the foe already has.
+,Cheerleader,30 (?0.5),Raises the Attack and Sp. Attack of neighboring allies by 1 level.
+,Nontraitor,40 (?0.5),"Does not attack allies, even when confused or in cowering status."
+,Bodyguard,65 (?1),Takes damage in place of friends who are low on HP.
+,Brick-Tough,100 (?1),Adds 10 to max HP. Cannot be turned off.
+,Power Pitcher,130 (?1.5),Throwing items deal 1.5 times the damage. Does not work with Geo Pebbles and Gravelerocks.
+,Survivalist,140 (?1.5),Restores more Belly stat when eating food. Sometimes avoids getting status changes when eating Grimy Food.
+,Wise Healer,175 (?2),Raises the effectiveness of HP-recovery items and moves.
+,Wary Fighter,180 (?2),User steps back one tile when it misses a move.
+,Deep Breather,190 (?2),Recovers 1 PP to a random move when changing floors.
+,Defender,230 (?2.5),Raises Defense and Sp. Defense by 1 but lowers Attack and Sp. Attack by 1.
+,Energy Saver,250 (?2.5),Belly goes down slower.
+,Quick Healer,290 (?3),Raises natural HP recovery.
+,Lava Evader,300 (?3),Avoids entering lava.
+,Counter Hitter,330 (?3.5),Sometimes counters 1/4 of the damage received back to the adjacent opponent.
+,Sure-Hit Attacker,500 (?5),Regular attacks do not miss.
+,Intimidator,560 (?6),Sometimes causes attacking foe to cringe.
+,House Avoider,800 (?8),Does not enter Monster Houses.
+5,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a Throwing Item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its held item.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Status Checker,25 (?0.5),Refrains from moves that inflict a status change that the foe already has.
+,Nontraitor,40 (?0.5),"Does not attack allies, even when confused or in cowering status."
+,PP Saver,55 (?0.5),Sometimes gets to use a move without draining PP.
+,Self Curer,70 (?1),Shortens required turns for Pokémon to heal from status.
+,Type-Advantage Master,105 (?1),Raises critical hit rate for type-effective moves.
+,Weak-Type picker,125 (?1.5),Targets foes with good type compatibility.
+,Gap Prober,170 (?2),Ranged moves and throwing items can pass allies without causing damage.
+,Wary Fighter,180 (?2),User steps back one tile when it misses a move.
+,Sharp Shooter,260 (?3),Raises critical-hit ratio.
+,Hit-and-Runner,270 (?3),Sometimes cancels foe's counter-attacks.
+,Lava Evader,300 (?3),Avoids entering lava.
+,Multi talent,310 (?3.5),Adds 5 to Pokémon's max PP.
+,Exp. Elite,320 (?3.5),Earns more experience when defeating foes.
+,All-Terrain Hiker,400 (?4),"Can walk on water, lava and valleys."
+,Trap Buster,420 (?4.5),Sometimes destroys traps when stepping on them.
+,Stair Sensor,480 (?5),Learns the location of stairs when changing floors.
+,No-Charger,570 (?6),Automatically uses charged attack without delay at the cost of 2 PP.
+,House Avoider,800 (?8),Does not enter Monster Houses.
+,Pierce Hurler,850 (?8.5),Throwing items penetrate Pokémon and keep flying.
+6,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a thrown item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its hold item.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Status Checker,25 (?0.5),Refrains from moves that inflict a status change that the foe already has.
+,Nontraitor,40 (?0.5),"Does not attack allies, even when confused or in cowering status."
+,Acute Sniffer,50 (?0.5),Lets you know the number of items on the floor.
+,PP Saver,55 (?0.5),Sometimes gets to use a move without draining PP.
+,Self-Curer,70 (?1),Shortens Pokémon's turns until its status change is cured.
+,Practice Swinger,195 (?2),Raises Attack and Sp. Attack by 1 on the turn after a missed attack.
+,Exp. Go-Getter,200 (?2),Prioritizes attacking foes with a high experience-point payout.
+,Trap Avoider,240 (?2.5),Dodges visible traps.
+,Hit-and-Runner,270 (?3),Sometimes nullifies counter-attacks.
+,Quick Healer,290 (?3),Raises rate of natural recovery.
+,Lava Evader,300 (?3),Avoids entering lava.
+,Exp. Elite,320 (?3.5),Earns more experience when defeating foes.
+,Erratic Player,340 (?3.5),Increases the multiplier effect of type compatibility.
+,Critical Dodger,440 (?4.5),Pokémon is immune to critical-hits.
+,Stair Sensor,480 (?5),Learns the location of the stairs when changing floors.
+,Quick Dodger,540 (?5.5),Raises the likelihood of dodging attacks.
+,Map Surveyor,580 (?6),Knows the floor layout.
+,Trap Seer,600 (?6),Pokémon can see hidden traps at its feet without setting them off.
+,Quick Striker,750 (?7.5),Can do two regular attacks in a row.
+7,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a thrown item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its hold item.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Efficiency Expert,10 (?0.5),Targets foes with low HP.
+,Status Checker,25 (?0.5),Refrains from moves that inflict a status that the foe already has.
+,Nontraitor,40 (?0.5),"Does not attack allies, even when confused or in cowering status."
+,Bodyguard,65 (?1),Takes damage in place of allies who are low on HP.
+,Self-Curer,70 (?1),Shortens Pokémon's turns until its status change is cured.
+,Brick-Tough,100 (?1),Adds 10 to max HP. Cannot be turned off.
+,Coin Watcher,150 (?1.5),"When Picking up Poké, the Pokémon pulls in 1.2 times the value of the coin. Cannot be turned off."
+,Wise Healer,175 (?2),Raises the effectiveness of HP-recovery items and moves.
+,Wary Fighter,180 (?2),Moves back 1 square when its attack misses.
+,Deep Breather,190 (?2),Recovers 1 PP to a random move when changing floors.
+,Quick Healer,290 (?3),Raises rate of natural HP recovery.
+,Lava Evader,300 (?3),Avoids entering lava.
+,All-Terrain Hiker,400 (?4),"Can cross water, lava, and valleys."
+,Trap Buster,420 (?4.5),Occasionally destroys traps by stepping on them.
+,Critical Dodger,440 (?4.5),Pokémon is immune to critical-hits.
+,Quick Dodger,554 (?5.5),Raises likelihood of dodging attacks.
+,Fast Friend,550 (?5.5),Raises likelihood of recruiting defeated foes.
+,House Avoider,800 (?8),Does not enter Monster Houses.
+,Nature Giver,900 (?9),Extends the effects of seeds and berries to the Pokémon's allies. Only works for Leader Pokémon.
+10,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a thrown item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its hold item.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Status Checker,25 (?0.5),Refrains from moves that inflict a status change that the foe already has.
+,Nontraitor,40 (?0.5),"Does not attack allies, even when confused or in cowering status."
+,PP Saver,55 (?0.5),Sometimes gets to use a move without draining PP.
+,Self-Curer,70 (?1),Shortens Pokémon's turns until its status change is cured.
+,Power Pitcher,130 (?1.5),Throwing items deal 1.5 times the damage. Does not work with Gravelerocks.
+,Survivalist,140 (?1.5),Restores more Belly stat when eating food. Sometimes avoids getting Status change when eating Grimy Food.
+,Deep Breather,190 (?2),Recovers 1 PP to a random move when changing floors.
+,Practice Swinger,195 (?2),Raises Attack and Sp. Attack by 1 on the turn after a missed attack.
+,Exp. Go-Getter,200 (?2),Prioritizes attacking foes with a high experience-point payout.
+,Aggressor,220 (?2.5),Raises Attack and Sp. Attack by 1 but lowers Defense and Sp. Defense by 1.
+,Sharpshooter,260 (?3),Raises critical-hit rate.
+,Quick Healer,290 (?3),Raises rate of natural HP recovery.
+,Lava Evader,300 (?3),Avoids entering lava.
+,All-Terrain Hiker,400 (?4),"Can cross water, lava, and valleys."
+,Extra Striker,520 (?5.5),Sometimes strikes again following an attack.
+,Quick Dodger,540 (?5.5),Raises the likelihood of dodging attacks.
+,Intimidator,560 (?6),Sometimes causes attacking foe to cringe.
+,House Avoider,800 (?8),Does not enter Monster Houses.
+,Time Tripper,950 (?9.5),Raises initial Speed by 1.
+11,Course Checker,Base Skill,Refrains from attacks that would be blocked by walls or allies.
+,Escapist,Base Skill,Can use the Explorer Badge to leave the dungeon. Cannot be turned off.
+,Item Catcher,Base Skill,Can catch a thrown item and keep it for its own.
+,Item Master,Base Skill,Can use and throw its hold item.
+,Exclusive Move-User,Base Skill,"Uses only moves, not regular attacks."
+,Status Checker,25 (?0.5),Refrains from moves that inflict a status that the foe already has.
+,Nontraitor,40 (?0.5),"Does not attack friends, even when confused or otherwise troubled."
+,PP Saver,55 (?0.5),Sometimes gets to use a move without draining PP.
+,Weak-Type Picker,125 (?1.5),Targets foes with good type compatibility.
+,Gap Prober,170 (?2),Moves and Throwing Items pass harmlessly through ally.
+,Wary Fighter,180 (?2),Moves back 1 square when its attack misses.
+,Concentrator,185 (?2),Raises Accuracy by 1 but lowers Evasiveness by 1.
+,Practice Swinger,195 (?2),Raises Attack and Sp. Attack by 1 on the turn after a missed attack.
+,Defender,230 (?2.5),Raises Defense and Sp. Defense by 1 but lowers Attack and Sp. Attack by 1.
+,Energy Saver,250 (?2.5),Belly stat depletes more slowly.
+,Hit-and-Runner,270 (?3),Sometimes nullifies counter-attacks.
+,Lava Evader,300 (?3),Avoids entering lava.
+,Multitalent,310 (?3.5),Adds 5 to Pokémon's max PP. Cannot be turned off.
+,Stair Sensor,480 (?5),Learns the location of the stairs when changing floors.
+,Sure-Hit Attacker,500 (?5),Regular attacks never miss.
+,Intimidator,560 (?6),Sometimes causes attacking foe to cringe.
+,Map Surveyor,580 (?6),Knows the floor layout.
+,House Avoider,800 (?8),Does not enter Monster Houses.
+,Absolute Mover,990 (?10),"Can cross water, lava, and valleys, and can crush walls."

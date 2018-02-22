@@ -33,7 +33,7 @@ namespace DashingWanderer.Commands
                  "more sense to have the improved version's info first, as it is more likely for people to be playing that." +
                  "\nCredits to https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/ " +
                  "for all the amazing documentation and research put into this game for the data files.")]
-    public class PokemonCommands
+    public class PokemonCommands : BaseCommandModule
     {
         [Command("dex"), Description("Retrieves info about the requested Pokemon.")]
         public async Task Dex(CommandContext ctx, [Description("Requested Pokemon name or Dex Id."), RemainingText]
@@ -105,6 +105,48 @@ namespace DashingWanderer.Commands
             builder.WithThumbnailUrl(PortraitEntity.UrlFromPortrait(DataBuilder.ExplorersPortraits.First(e => e.IndexId == explorersPokemon.RawIndex), DataBuilder.ExplorersPortraits.First(e => e.IndexId == explorersPokemon.RawIndex).Portraits.First(e => e.PortraitId == 0)));
             
             await ctx.RespondAsync($"__**{explorersPokemon.Name}, the {explorersPokemon.Category} Pokémon**__", false, builder.Build());
+        }
+
+        [Command("skill"), Description("Retrieves info about the requested IQ skill.")]
+        public async Task Skill(CommandContext ctx, [Description("Requested iq skill name"), RemainingText] string iqSkill)
+        {
+            IQSkill skill = GetIQSkill(iqSkill);
+
+            DiscordEmbedBuilder builder = new DiscordEmbedBuilder
+            {
+                Title = skill.Name,
+                Description = skill.Effect,
+                Color = DiscordColor.Cyan
+            };
+
+            builder.AddField("Group(s)", string.Join(", ", DataBuilder.ExplorersIQSkills.Where(e => e.Name == skill.Name).Select(e => e.Group)));
+
+            await ctx.RespondAsync(null, false, builder.Build());
+        }
+
+        [Command("group"), Description("Retrieves iq group info.")]
+        public async Task IQGroup(CommandContext ctx, [Description("Requested iq group letter"), RemainingText]
+            string iqGroup)
+        {
+            if (Enum.TryParse(typeof(IQEnum.IQGroup), iqGroup, out object resultIQGroupObject))
+            {
+                IQEnum.IQGroup resultIQGroup = (IQEnum.IQGroup)resultIQGroupObject;
+
+                DiscordEmbedBuilder builder = new DiscordEmbedBuilder
+                {
+                    Title = $"IQ Group {resultIQGroup}",
+                    Color = DiscordColor.Cyan
+                };
+
+                builder.AddField("Skills", string.Join(", ", DataBuilder.ExplorersIQSkills.Where(e => e.Group == resultIQGroup).Select(e => e.Name)));
+
+                builder.AddField("Pokemon that have this IQ group",
+                    string.Join(", ",
+                        DataBuilder.ExplorersPokemon.Where(e => e.GenderEnitities.First().IQGroup == resultIQGroup)
+                            .Select(e => e.Name).Distinct()));
+
+                await ctx.RespondAsync(null, false, builder.Build());
+            }
         }
 
         [Command("item"), Description("Retrieves info about the requested item.")]
@@ -220,7 +262,7 @@ namespace DashingWanderer.Commands
 
             builder.WithFooter($"#{explorersItem.ItemId}", "https://cdn.discordapp.com/emojis/330534908101394432.png");
 
-            builder.WithColor(new DiscordColor(type.ToHex()));
+            builder.WithColor(DiscordColor.Cyan);
 
             await ctx.RespondAsync(string.Empty, false, builder.Build());
         }
@@ -417,6 +459,40 @@ namespace DashingWanderer.Commands
             }
 
             return explorersMove;
+        }
+
+        private static IQSkill GetIQSkill(string iqSkill)
+        {
+            iqSkill = iqSkill.ToLower();
+
+            IQSkill resultIQSkill;
+
+
+            resultIQSkill = DataBuilder.ExplorersIQSkills.FirstOrDefault(e => e.Name.ToLower() == iqSkill || e.Id == iqSkill);
+
+            if (resultIQSkill == null)
+            {
+                IEnumerable<string> similarSkills = DataBuilder.ExplorersIQSkills
+                    .GroupBy(e =>
+                    {
+                        int idComparasion = LevenshteinDistance.Compute(e.Id, iqSkill);
+                        int nameComparasion = LevenshteinDistance.Compute(e.Name, iqSkill);
+                        return idComparasion < nameComparasion ? idComparasion : nameComparasion;
+                    })
+                    .OrderBy(e => e.Key)
+                    .First(e => e.Any() && e.Any(f => !string.IsNullOrWhiteSpace(f.Name)))?
+                    .Select(e => e.Name)
+                    .ToList();
+
+                if (similarSkills == null || !similarSkills.Any())
+                {
+                    throw new DiscordMessageException("Item not found.");
+                }
+
+                throw new DiscordMessageException($"Move not found. Did you mean any of the following: `{string.Join("`, `", similarSkills)}`?");
+            }
+
+            return resultIQSkill;
         }
 
         private static ExplorersEnitity GetPokemon(string pokemon)

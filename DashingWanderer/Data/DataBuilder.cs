@@ -27,11 +27,13 @@ namespace DashingWanderer.Data
         public static List<ExplorersEnitity> ExplorersPokemon { get; private set; }
         public static List<ExplorersItem> ExplorersItems { get; private set; }
         public static List<ExplorersMove> ExplorersMoves { get; private set; }
+        public static List<IQSkill> ExplorersIQSkills { get; private set; }
 
         public static readonly string PortraitFolder = Path.Combine(Globals.AppPath, "Data", "Portraits");
         public static readonly string PokemonDataFolder = Path.Combine(Globals.AppPath, "Data", "Pokemon");
         public static readonly string ItemDataFolder = Path.Combine(Globals.AppPath, "Data", "Items");
         public static readonly string MoveDataFolder = Path.Combine(Globals.AppPath, "Data", "Moves");
+        public static readonly string IQDataFolder = Path.Combine(Globals.AppPath, "Data", "IQ");
 
         public static void GetExplorersData()
         {
@@ -65,6 +67,13 @@ namespace DashingWanderer.Data
                 {
                     currentFile = file;
                     ExplorersPortraits.Add(JsonConvert.DeserializeObject<PortraitEntity>(File.ReadAllText(file)));
+                }
+
+                ExplorersIQSkills = new List<IQSkill>();
+                foreach (string file in Directory.GetFiles(IQDataFolder, "*.json", SearchOption.AllDirectories))
+                {
+                    currentFile = file;
+                    ExplorersIQSkills.Add(JsonConvert.DeserializeObject<IQSkill>(File.ReadAllText(file)));
                 }
             }
             catch (Exception e)
@@ -143,6 +152,42 @@ namespace DashingWanderer.Data
                     Console.WriteLine($"Failed on file {file}.");
                     Console.WriteLine(e);
                 }
+            }
+        }
+
+        public static void BuildExplorerIQSkills()
+        {
+            string[] iqLines = File.ReadAllLines(Path.Combine(Globals.AppPath, "IQGroups.csv"));
+
+            IQEnum.IQGroup currentIQGroup = IQEnum.IQGroup.A;
+            foreach (string iqLine in iqLines)
+            {
+                string remainingText = iqLine;
+                IQSkill skill = new IQSkill();
+
+                if (int.TryParse(Regex.Match(remainingText, @"[0-9]*,").Value.TrimEnd(','), out int result))
+                {
+                    currentIQGroup = (IQEnum.IQGroup)result;
+
+                    remainingText = remainingText.Substring(remainingText.IndexOf(',') + 1);
+                }
+
+                remainingText = remainingText.TrimStart(',');
+
+                skill.Group = currentIQGroup;
+
+                skill.Name = Regex.Match(remainingText, @"[^,]+", RegexOptions.IgnoreCase).Value;
+                skill.Id = skill.Name.Replace(" ", "_");
+
+                remainingText = remainingText.Substring(remainingText.IndexOf(',') + 1);
+
+                skill.RequiredIQ = Regex.Match(remainingText, @"[^,]+").Value == "Base Skill" ? 0 : int.Parse(Regex.Match(remainingText, @"[0-9]+").Value);
+
+                remainingText = remainingText.Substring(remainingText.IndexOf(',') + 1);
+
+                skill.Effect = remainingText.Trim(',', '"');
+
+                File.WriteAllText(Path.Combine(Directory.CreateDirectory(Path.Combine(IQDataFolder, $"{skill.Group}")).FullName, $"{skill.Id}.json"), JsonConvert.SerializeObject(skill, Formatting.Indented));
             }
         }
 

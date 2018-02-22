@@ -39,8 +39,7 @@ namespace DashingWanderer
         {
 #if DATA
             DataBuilder.GetExplorersData();
-            DataBuilder.WriteExplorersPortraitsToFiles();
-            DataBuilder.BuildExplorersDataIndexes();
+            DataBuilder.BuildExplorerIQSkills();
             Console.WriteLine("Press any key to close...");
             Console.ReadKey(true);
 #else
@@ -126,11 +125,13 @@ namespace DashingWanderer
         {
             if (e.Exception is DiscordMessageException outputException)
             {
+                e.Handled = true;
+
                 await e.Context.RespondAsync(outputException.Message, outputException.IsTTS, outputException.Embed);
 
                 e.Context.Client.DebugLogger.LogMessage(LogLevel.Warning, 
                     Assembly.GetExecutingAssembly().FullName, 
-                    $"DiscordMessageException output to channel {e.Context.Channel.Name}. Arguments: {string.Join(", ", e.Command.Arguments)}", 
+                    $"DiscordMessageException output to channel {e.Context.Channel.Name}. Message: {string.Join(", ", e.Context.Message)}", 
                     e.Context.Message.Timestamp.DateTime);
             }
             else

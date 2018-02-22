@@ -5,17 +5,23 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using DashingWanderer.Data;
+using DashingWanderer.Data.Explorers.Items;
+using DashingWanderer.Data.Explorers.Moves;
+using DashingWanderer.Data.Explorers.Pokedex;
+using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using PortraitsAdder;
 
 namespace DashingWanderer.Commands
 {
     public class MiscCommands
     {
-        [Command("eval"), RequireOwner]
+        [Command("eval"), RequireOwner, Hidden]
         public async Task Eval2(CommandContext ctx, [RemainingText] string command)
         {
             command = string.Join("\n", command.Split('\n').Skip(1).Take(command.Split('\n').Skip(1).Count() - 1));
@@ -26,17 +32,26 @@ namespace DashingWanderer.Commands
                 .WithReferences(typeof(object).GetTypeInfo().Assembly, typeof(Enumerable).GetTypeInfo().Assembly,
                                 typeof(PropertyInfo).GetTypeInfo().Assembly, typeof(Decoder).GetTypeInfo().Assembly,
                                 typeof(Regex).GetTypeInfo().Assembly, typeof(Task).GetTypeInfo().Assembly, typeof(CommandContext).GetTypeInfo().Assembly,
-                                typeof(Command).GetTypeInfo().Assembly, typeof(DiscordMessage).GetTypeInfo().Assembly)
+                                typeof(Command).GetTypeInfo().Assembly, typeof(DiscordMessage).GetTypeInfo().Assembly,
+                                typeof(ExplorersItem).GetTypeInfo().Assembly)
                 .WithImports("System", "System.Collections.Generic", "System.Linq", "System.Reflection", "System.Text",
                              "System.Text.RegularExpressions", "System.Threading.Tasks", "DSharpPlus.CommandsNext",
-                             "DSharpPlus.CommandsNext.Attributes", "DSharpPlus.Entities", "DSharpPlus"), typeof(Globals))
-                .CreateDelegate();
-
+                             "DSharpPlus.CommandsNext.Attributes", "DSharpPlus.Entities", "DSharpPlus", "DashingWanderer.Data.Explorers.Items", 
+                             "DashingWanderer.Data.Explorers.Moves", "DashingWanderer.Data.Explorers.Pokedex"), typeof(Globals))
+                .CreateDelegate();                                                                       
             object result;
 
             try
             {
-                result = await script(new Globals { Ctx = ctx });
+                result = await script(new Globals
+                {
+                    Ctx = ctx,
+                    ExplorersPokemon = DataBuilder.ExplorersPokemon,
+                    ExplorersIQSkills = DataBuilder.ExplorersIQSkills,
+                    ExplorersItems = DataBuilder.ExplorersItems,
+                    ExplorersMoves = DataBuilder.ExplorersMoves,
+                    ExplorersPortraits = DataBuilder.ExplorersPortraits
+                });
             }
             catch (Exception e)
             {
@@ -46,11 +61,7 @@ namespace DashingWanderer.Commands
                 errorbuilder.AddField("Output", $"```\n[Exception ({(e.InnerException ?? e).GetType().Name})] {e.InnerException?.Message ?? e.Message}\n```");
                 errorbuilder.WithColor(DiscordColor.Red);
 
-                DiscordMessage errorMessage = await ctx.RespondAsync(null, false, errorbuilder.Build());
-
-                await Task.Delay(TimeSpan.FromMinutes(1));
-
-                await errorMessage.DeleteAsync();
+                await ctx.RespondAsync(null, false, errorbuilder.Build());
 
                 return;
             }
@@ -60,7 +71,7 @@ namespace DashingWanderer.Commands
             builder.AddField("Output", $"```\n{result.ToString()}\n```");
             builder.WithColor(DiscordColor.Green);
 
-            DiscordMessage resultMessage = await ctx.RespondAsync(null, false, builder.Build());
+            await ctx.RespondAsync(null, false, builder.Build());
         }
 
         public async Task TCPI(CommandContext ctx)
@@ -71,5 +82,10 @@ namespace DashingWanderer.Commands
     public class Globals
     {
         public CommandContext Ctx { get; set; }
+        public List<PortraitEntity> ExplorersPortraits { get; set; }
+        public List<ExplorersEnitity> ExplorersPokemon { get; set; }
+        public List<ExplorersItem> ExplorersItems { get; set; }
+        public List<ExplorersMove> ExplorersMoves { get; set; }
+        public List<IQSkill> ExplorersIQSkills { get; set; }
     }
 }
