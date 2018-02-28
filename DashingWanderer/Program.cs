@@ -147,7 +147,7 @@ namespace DashingWanderer
 
         private static async Task Discord_MessageCreated(MessageCreateEventArgs e)
         {
-            if (Globals.Random.Next(0, 100000) == 73842 && !e.Author.IsBot)
+            if (Globals.Random.Next(0, 1000) == 6 && !e.Author.IsBot)
             {
                 await e.Channel.SendMessageAsync("Whatever I do, I do it stylishly. That's my motto.");
             }
