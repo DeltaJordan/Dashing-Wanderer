@@ -19,7 +19,7 @@ using PortraitsAdder;
 
 namespace DashingWanderer.Commands
 {
-    public class MiscCommands
+    public class MiscCommands : BaseCommandModule
     {
         [Command("eval"), RequireOwner, Hidden]
         public async Task Eval2(CommandContext ctx, [RemainingText] string command)
