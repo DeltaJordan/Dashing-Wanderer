@@ -20,6 +20,7 @@ using DashingWanderer.Exceptions;
 using DashingWanderer.IO;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
+using DSharpPlus.Entities;
 using DSharpPlus.EventArgs;
 using DSharpPlus.Interactivity;
 using DSharpPlus.VoiceNext;
@@ -93,6 +94,8 @@ namespace DashingWanderer
             debugPrefixes = new[] {"d.."};
 #endif
 
+            await discord.UpdateStatusAsync(new DiscordActivity("d.help", ActivityType.Playing));
+
             commands = discord.UseCommandsNext(new CommandsNextConfiguration
             {
                 StringPrefixes = debugPrefixes ?? new []{"d."},
@@ -147,7 +150,7 @@ namespace DashingWanderer
 
         private static async Task Discord_MessageCreated(MessageCreateEventArgs e)
         {
-            if (Globals.Random.Next(0, 1000) == 6 && !e.Author.IsBot)
+            if (Globals.Random.Next(0, 10000) == 6 && !e.Author.IsBot)
             {
                 await e.Channel.SendMessageAsync("Whatever I do, I do it stylishly. That's my motto.");
             }
