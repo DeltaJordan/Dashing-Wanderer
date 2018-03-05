@@ -94,8 +94,6 @@ namespace DashingWanderer
             debugPrefixes = new[] {"d.."};
 #endif
 
-            await discord.UpdateStatusAsync(new DiscordActivity("d.help", ActivityType.Playing));
-
             commands = discord.UseCommandsNext(new CommandsNextConfiguration
             {
                 StringPrefixes = debugPrefixes ?? new []{"d."},
@@ -119,6 +117,8 @@ namespace DashingWanderer
             await discord.ConnectAsync();
 
             DataBuilder.GetExplorersData();
+
+            await discord.UpdateStatusAsync(new DiscordActivity("d.help", ActivityType.Playing));
 
             await Task.Delay(-1);
 #endif
