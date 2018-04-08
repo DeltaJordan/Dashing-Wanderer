@@ -152,7 +152,7 @@ namespace DashingWanderer
         {
             if (Globals.Random.Next(0, int.MaxValue) == 6 && !e.Author.IsBot)
             {
-                await e.Channel.SendMessageAsync("Whatever I do, I do it stylishly. That's my motto.");
+                //await e.Channel.SendMessageAsync("Whatever I do, I do it stylishly. That's my motto.");
             }
         }
     }
