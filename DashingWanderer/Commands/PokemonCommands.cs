@@ -33,7 +33,7 @@ namespace DashingWanderer.Commands
                  "more sense to have the improved version's info first, as it is more likely for people to be playing that." +
                  "\nCredits to https://projectpokemon.org/home/forums/topic/31407-pokemon-mystery-dungeon-2-psy_commandos-tools-and-research-notes/ " +
                  "for all the amazing documentation and research put into this game for the data files.")]
-    public class PokemonCommands : BaseCommandModule
+    public class ExplorerCommands : BaseCommandModule
     {
         [Command("dex"), Description("Retrieves info about the requested Pokemon.")]
         public async Task Dex(CommandContext ctx, [Description("Requested Pokemon name or Dex Id."), RemainingText]

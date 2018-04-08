@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -9,18 +11,46 @@ using DashingWanderer.Data;
 using DashingWanderer.Data.Explorers.Items;
 using DashingWanderer.Data.Explorers.Moves;
 using DashingWanderer.Data.Explorers.Pokedex;
+using DashingWanderer.Network;
 using DSharpPlus;
 using DSharpPlus.CommandsNext;
 using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using PokeAPI;
 using PortraitsAdder;
 
 namespace DashingWanderer.Commands
 {
     public class MiscCommands : BaseCommandModule
     {
+        [Command("random")]
+        public async Task Random(CommandContext ctx)
+        {
+            PokemonSpecies species = await DataFetcher.GetApiObject<PokemonSpecies>(DashingWanderer.Globals.Random.Next(1, 802));
+
+            string pokeName = species.Name;
+
+            if (!NetworkFileHelper.RemoteFileExists($"https://github.com/110Percent/beheeyem-data/raw/master/gifs/{pokeName}.gif"))
+            {
+                await this.Random(ctx);
+                return;
+            }
+
+            using (WebClient client = new WebClient())
+            using (MemoryStream stream = new MemoryStream())
+            {
+                byte[] gifBytes = client.DownloadData(new Uri($"https://github.com/110Percent/beheeyem-data/raw/master/gifs/{pokeName}.gif"));
+
+                await stream.WriteAsync(gifBytes, 0, gifBytes.Length);
+
+                stream.Position = 0;
+
+                await ctx.RespondWithFileAsync($"{pokeName}.gif", stream);
+            }
+        }
+
         [Command("eval"), RequireOwner, Hidden]
         public async Task Eval2(CommandContext ctx, [RemainingText] string command)
         {

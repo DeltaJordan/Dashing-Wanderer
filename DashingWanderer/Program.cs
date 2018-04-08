@@ -1,7 +1,7 @@
 ﻿// Uncomment to build data
 // #define DATA
 // Uncomment to run test build (d.. as the command prefix)
-// #define TESTBUILD
+#define TESTBUILD
 
 using System;
 using System.Collections.Generic;
@@ -152,7 +152,7 @@ namespace DashingWanderer
         {
             if (Globals.Random.Next(0, 10000) == 6 && !e.Author.IsBot)
             {
-                await e.Channel.SendMessageAsync("Whatever I do, I do it stylishly. That's my motto.");
+                //await e.Channel.SendMessageAsync("Whatever I do, I do it stylishly. That's my motto.");
             }
         }
     }
