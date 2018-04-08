@@ -32,7 +32,7 @@ namespace DashingWanderer.Commands
 
             string pokeName = species.Name;
 
-            if (!NetworkFileHelper.RemoteFileExists($"https://github.com/110Percent/beheeyem-data/raw/master/gifs/{pokeName}.gif"))
+            if (!NetworkFileHelper.RemoteFileExists($"https://play.pokemonshowdown.com/sprites/xyani/{pokeName}.gif"))
             {
                 await this.Random(ctx);
                 return;
@@ -41,7 +41,7 @@ namespace DashingWanderer.Commands
             using (WebClient client = new WebClient())
             using (MemoryStream stream = new MemoryStream())
             {
-                byte[] gifBytes = client.DownloadData(new Uri($"https://github.com/110Percent/beheeyem-data/raw/master/gifs/{pokeName}.gif"));
+                byte[] gifBytes = client.DownloadData(new Uri($"https://play.pokemonshowdown.com/sprites/xyani/{pokeName}.gif"));
 
                 await stream.WriteAsync(gifBytes, 0, gifBytes.Length);
 
