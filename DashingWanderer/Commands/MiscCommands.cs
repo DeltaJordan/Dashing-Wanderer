@@ -18,6 +18,8 @@ using DSharpPlus.CommandsNext.Attributes;
 using DSharpPlus.Entities;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using Microsoft.CodeAnalysis.Scripting;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PokeAPI;
 using PortraitsAdder;
 
@@ -28,9 +30,18 @@ namespace DashingWanderer.Commands
         [Command("random")]
         public async Task Random(CommandContext ctx)
         {
-            PokemonSpecies species = await DataFetcher.GetApiObject<PokemonSpecies>(DashingWanderer.Globals.Random.Next(1, 802));
+            string pokedexJson = Path.Combine(DashingWanderer.Globals.AppPath, "maingamepokedex.json");
 
-            string pokeName = species.Name;
+            JObject pokedexArray = JObject.Parse(File.ReadAllText(pokedexJson));
+
+            List<KeyValuePair<string, JToken>> allPokedexTokens = new List<KeyValuePair<string, JToken>>();
+
+            foreach (KeyValuePair<string, JToken> keyValuePair in pokedexArray)
+            {
+                allPokedexTokens.Add(keyValuePair);
+            }
+
+            string pokeName = allPokedexTokens[DashingWanderer.Globals.Random.Next(allPokedexTokens.Count - 1)].Key;
 
             if (!NetworkFileHelper.RemoteFileExists($"https://play.pokemonshowdown.com/sprites/xyani/{pokeName}.gif"))
             {
@@ -86,7 +97,7 @@ namespace DashingWanderer.Commands
             catch (Exception e)
             {
                 DiscordEmbedBuilder errorbuilder = new DiscordEmbedBuilder();
-                errorbuilder.WithTitle("Exception occured.");
+                errorbuilder.WithTitle("Exception occurred.");
                 errorbuilder.AddField("Input", $"```cs\n{command}\n```");
                 errorbuilder.AddField("Output", $"```\n[Exception ({(e.InnerException ?? e).GetType().Name})] {e.InnerException?.Message ?? e.Message}\n```");
                 errorbuilder.WithColor(DiscordColor.Red);
