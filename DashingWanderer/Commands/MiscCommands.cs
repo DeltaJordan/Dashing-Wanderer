@@ -30,6 +30,12 @@ namespace DashingWanderer.Commands
         [Command("random")]
         public async Task Random(CommandContext ctx)
         {
+            if (DashingWanderer.Globals.Random.Next(1, 50) == 36)
+            {
+                await this.ShinyRandom(ctx);
+                return;
+            }
+
             string pokedexJson = Path.Combine(DashingWanderer.Globals.AppPath, "maingamepokedex.json");
 
             JObject pokedexArray = JObject.Parse(File.ReadAllText(pokedexJson));
@@ -53,6 +59,40 @@ namespace DashingWanderer.Commands
             using (MemoryStream stream = new MemoryStream())
             {
                 byte[] gifBytes = client.DownloadData(new Uri($"https://play.pokemonshowdown.com/sprites/xyani/{pokeName}.gif"));
+
+                await stream.WriteAsync(gifBytes, 0, gifBytes.Length);
+
+                stream.Position = 0;
+
+                await ctx.RespondWithFileAsync($"{pokeName}.gif", stream);
+            }
+        }
+
+        private async Task ShinyRandom(CommandContext ctx)
+        {
+            string pokedexJson = Path.Combine(DashingWanderer.Globals.AppPath, "maingamepokedex.json");
+
+            JObject pokedexArray = JObject.Parse(File.ReadAllText(pokedexJson));
+
+            List<KeyValuePair<string, JToken>> allPokedexTokens = new List<KeyValuePair<string, JToken>>();
+
+            foreach (KeyValuePair<string, JToken> keyValuePair in pokedexArray)
+            {
+                allPokedexTokens.Add(keyValuePair);
+            }
+
+            string pokeName = allPokedexTokens[DashingWanderer.Globals.Random.Next(allPokedexTokens.Count - 1)].Key;
+
+            if (!NetworkFileHelper.RemoteFileExists($"https://play.pokemonshowdown.com/sprites/xyani-shiny/{pokeName}.gif"))
+            {
+                await this.Random(ctx);
+                return;
+            }
+
+            using (WebClient client = new WebClient())
+            using (MemoryStream stream = new MemoryStream())
+            {
+                byte[] gifBytes = client.DownloadData(new Uri($"https://play.pokemonshowdown.com/sprites/xyani-shiny/{pokeName}.gif"));
 
                 await stream.WriteAsync(gifBytes, 0, gifBytes.Length);
 

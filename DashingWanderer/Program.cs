@@ -1,7 +1,7 @@
 ﻿// Uncomment to build data
 // #define DATA
 // Uncomment to run test build (d.. as the command prefix)
-// #define TESTBUILD
+#define TESTBUILD
 
 using System;
 using System.Collections.Generic;
