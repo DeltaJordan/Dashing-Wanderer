@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 
 namespace PortraitsAdder
 {
-    extern alias SystemDrawing;
-
     public class PortraitEntity
     {
         public int IndexId { get; set; }

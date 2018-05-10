@@ -16,6 +16,7 @@
     <PackageReference Include="DSharpPlus.CommandsNext" Version="4.0.0-beta-00426" />
     <PackageReference Include="DSharpPlus.Interactivity" Version="4.0.0-beta-00426" />
     <PackageReference Include="DSharpPlus.VoiceNext" Version="4.0.0-beta-00426" />
+    <PackageReference Include="Humanizer" Version="2.2.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="2.6.1" />
     <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
     <PackageReference Include="PokeApi.NET" Version="1.1.0" />
@@ -43,6 +44,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="maingamepokedex.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Portraits.dat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
