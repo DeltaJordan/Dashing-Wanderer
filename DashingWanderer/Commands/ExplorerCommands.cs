@@ -482,6 +482,7 @@ namespace DashingWanderer.Commands
                     .OrderBy(e => e.Key)
                     .First(e => e.Any() && e.Any(f => !string.IsNullOrWhiteSpace(f.Name)))?
                     .Select(e => e.Name)
+                    .Distinct()
                     .ToList();
 
                 if (similarSkills == null || !similarSkills.Any())
